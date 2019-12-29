@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>New task</title>
+    </head>
+    <body>
+
+        <h1>New task</h1>
+
+        <form action="#" th:action="@{/tasks/new}" method="POST">
+            <label for="name">Name</label>: <input type="text" name="name" id="name"/>
+            <input type="submit" value="Create!"/>
+        </form>
+
+        <p></p>
+    </body>
+</html>

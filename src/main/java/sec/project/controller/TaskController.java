@@ -24,12 +24,7 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String getTasks(Authentication authentication, Model model) {
-        String username;
-        try {
-            username = authentication.getName();
-        } catch(Exception NullPointerException) {
-            return "redirect:/login";
-        }
+        String username = authentication.getName();
         
         List<Task> tasks = taskRepository.findByUsername(username);
         
@@ -37,5 +32,19 @@ public class TaskController {
         model.addAttribute("tasks", tasks);
         
         return "tasks";
+    }
+
+    @RequestMapping(value = "/tasks/new", method = RequestMethod.GET)
+    public String createTaskForm(Authentication authentication) {    
+        return "newTask";
+    }
+    
+    @RequestMapping(value = "/tasks/new", method = RequestMethod.POST)
+    public String createTask(Authentication authentication, @RequestParam String name) {
+        String username = authentication.getName();
+        
+        taskRepository.save(new Task(name, username));
+        
+        return "redirect:/tasks";
     }
 }

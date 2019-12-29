@@ -5,9 +5,12 @@
     </head>
     <body>
         <h1 th:text="${username}">username</h1>
+        <br/>
+        <a th:href="@{/tasks/new}">Create a new task!</a>
         <ul>
             <li th:each="task: ${tasks}">
                 <span th:utext="${task.name}">task name</span>
+                <span th:utext="${task.id}">task id</span>
             </li>
         </ul>
     </body>
