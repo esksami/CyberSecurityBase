@@ -10,7 +10,7 @@
         <ul>
             <li th:each="task: ${tasks}">
                 <span th:utext="${task.name}">task name</span>
-                <span th:utext="${task.id}">task id</span>
+                <a th:href="@{/tasks/edit/{id}(id=${task.id})}">Edit task</a>
             </li>
         </ul>
     </body>
