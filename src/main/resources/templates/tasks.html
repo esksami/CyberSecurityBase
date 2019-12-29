@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My tasks</title>
+    </head>
+    <body>
+        <h1 th:text="${username}">username</h1>
+        <ul>
+            <li th:each="task: ${tasks}">
+                <span th:utext="${task.name}">task name</span>
+            </li>
+        </ul>
+    </body>
+</html>
