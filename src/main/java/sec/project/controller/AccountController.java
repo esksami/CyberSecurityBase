@@ -30,31 +30,23 @@ public class AccountController {
         
         return "profile";
     }
-//    @RequestMapping("/form")
-//    public String passwordForm() {
-//        return "form";
-//    }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String loginForm() {
-//        return "login";
-//    }
-//
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String loginForm(@RequestParam String password, @RequestParam String username) {
-//        return "login";
-//    }
+    @RequestMapping(value = "/password/edit", method = RequestMethod.GET)
+    public String changePassword(Authentication authentication, Model model) {
+        Account account = accountRepository.findByUsername(authentication.getName());
+        
+        model.addAttribute("user", account);
 
-//    @RequestMapping(value = "/password", method = RequestMethod.POST)
-//    public String changePassword(Authentication authentication, @RequestParam String password) {
-//        Account account = accountRepository.findByUsername(authentication.getName());
-//        if (account == null) {
-//            return "redirect:/index";
-//        }
-//
-//        account.setPassword(encoder.encode(password));
-//        accountRepository.save(account);
-//
-//        return "thanks";
-//    }
+        return "editPassword";
+    }
+    
+    @RequestMapping(value = "/password/edit", method = RequestMethod.POST)
+    public String changePassword(Authentication authentication, @RequestParam String password) {
+        Account account = accountRepository.findByUsername(authentication.getName());
+        account.setPassword(encoder.encode(password));
+        
+        accountRepository.save(account);
+
+        return "redirect:/profile";
+    }
 }
