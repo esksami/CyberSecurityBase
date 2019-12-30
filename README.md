@@ -17,9 +17,9 @@ Because the filter string is formatted into a simple LIKE operator an attacker c
 ```sql
 SELECT t FROM Task t WHERE t.username = 'hello'AND t.name LIKE '%%' OR '' LIKE '%%'
 ```
-which is always true because of the injected OR and LIKE operators together cause the `WHERE` clause to be always true.
+which returns all tasks from the database because the injected `OR` and `LIKE` operators together cause the `WHERE` clause to be always true.
 
-The attacker will gain read access to all tasks in the database, regardless of their owner.
+The attacker would then have read access to all tasks in the database, regardless of their owner.
 
 ### how to fix
 
