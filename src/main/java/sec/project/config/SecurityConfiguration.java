@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         
-        http.authorizeRequests().antMatchers("/tasks", "/tasks/new").authenticated();
+        http.authorizeRequests().antMatchers("/tasks", "/tasks/new", "/profile", "/password/edit").authenticated();
         
         http.formLogin().permitAll()
             .and()

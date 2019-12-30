@@ -5,8 +5,13 @@
     </head>
     <body>
         <h1 th:text="${username}">username</h1>
+        <a th:href="@{/profile}">Go to profile</a>
         <br/>
         <a th:href="@{/tasks/new}">Create a new task!</a>
+        <form action="#" th:action="@{/tasks}" method="GET">
+            <input type="text" th:name="filter"/>
+            <input type="submit" value="search"/>
+        </form>
         <ul>
             <li th:each="task: ${tasks}">
                 <span th:utext="${task.name}">task name</span>

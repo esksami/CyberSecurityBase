@@ -24,10 +24,14 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
-    public String getTasks(Authentication authentication, Model model) {
+    public String getTasks(Authentication authentication, Model model, @RequestParam(value = "filter", required = false) String filter) {
+        if (filter == null) {
+            filter = "";
+        }
+        
         String username = authentication.getName();
         
-        List<Task> tasks = taskRepository.findByUsername(username);
+        List<Task> tasks = taskRepository.filterByName(username, filter);
         
         model.addAttribute("username", username);
         model.addAttribute("tasks", tasks);

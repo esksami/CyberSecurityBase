@@ -30,6 +30,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         account.setPassword("world");
         accountRepository.save(account);
         
+        Account account2 = new Account();
+        
+        account2.setUsername("red");
+        account2.setPassword("world");
+        accountRepository.save(account2);
+        
+        Account account3 = new Account();
+        
+        account3.setUsername("blue");
+        account3.setPassword("world");
+        accountRepository.save(account3);
+        
         Task task = new Task();
         
         task.setName("Clean your room!<script> console.log(\"Hello World!\"); </script>");
@@ -39,6 +51,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         taskRepository.save(new Task("New", "hello"));
         taskRepository.save(new Task("Another", "hello"));
         taskRepository.save(new Task("Test", "hello"));
+        
+        taskRepository.save(new Task("Red New", "red"));
+        taskRepository.save(new Task("Red Another", "red"));
+        taskRepository.save(new Task("Red Test", "red"));
+        
+        taskRepository.save(new Task("Blue New", "blue"));
+        taskRepository.save(new Task("Blue Another", "blue"));
+        taskRepository.save(new Task("Blue Test", "blue"));
     }
 
     @Override

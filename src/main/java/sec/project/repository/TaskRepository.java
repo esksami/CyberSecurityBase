@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import sec.project.domain.Task;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long>, TaskRepositoryCustom {
     @Query("SELECT task FROM #{#entityName} task WHERE task.username = :username")
     List<Task> findByUsername(@Param("username") String username);
 }
